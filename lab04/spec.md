@@ -379,7 +379,8 @@ $$
     ```shell=
     $ sbt 'Test/runMain acal_lab04.Lab.CLAdderTest -tbn verilator -td ./generated'
     ```
-: : : warning
+---
+:::warning
 **Chisel 會把未使用的電路直接忽略 synthesis**
 因此不管是在dump出的verilog檔，還是波形圖中都不會找到該訊號。範例中的C訊號在合成時，就被省略掉了。
 以下為範例：
@@ -425,6 +426,7 @@ class HalfAdder extends Module {
 **halfAdder.v**
 ![](https://course.playlab.tw/md/uploads/dd18df01-d805-4844-9372-8d854ee97663.png)
 :::
+
 Homework 4
 ===
 - **Hw4-1~3**
