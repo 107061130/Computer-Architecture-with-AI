@@ -1,12 +1,4 @@
----
-title: ACAL 2024 Curriculum Lab 6 - RISC-V Instruction Set Architecture
-robots: noindex, nofollow
----
-# <center>ACAL 2024 Curriculum Lab 6 <br /><font color="＃1560bd"> RISC-V Instruction Set Architecture</font></center>
-
-###### tags: `AIAS Spring 2024`
-
-[toc]
+# ACAL 2024 Curriculum Lab 6 - RISC-V Instruction Set Architecture
 
 ## Introduction
 - 在課堂上有介紹了基本的 RISC-V ISA，在 LAB6 中我們將會：
