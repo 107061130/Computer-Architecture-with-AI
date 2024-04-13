@@ -1,0 +1,11 @@
+## RV32 Emulator Testing Assembly Code for MUL function
+
+main:
+li   x28, -23567
+rori x29, x28, 4
+
+rori x29, x28, 24
+
+rori x29, x28, 28
+
+hcf
