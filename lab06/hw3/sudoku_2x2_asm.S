@@ -21,6 +21,7 @@ sudoku_2x2_asm:
     lw 	   	ra, 0(sp)         # recover return address
     addi  	sp, sp, 4         # let sp point to upper stack
     ret                       # return 
+ 
     
 # solve function in .c file
 solve:
@@ -44,15 +45,14 @@ solve:
 	# for (i = 1; i < 5; i++)
 for_loop:
 	addi    t2, t2, 1        # i = i + 1
-    beq     t2, t3, return   # if loop end, return
+    beq     t2, t1, return   # if loop end, return
     li      a3, 0
     
     # caller save t0 ~ t3
-    addi   	sp, sp, -16        
+    addi   	sp, sp, -12        
     sw     	t0, 0(sp)        
     sw     	t1, 4(sp)   
     sw     	t2, 8(sp)        
-    sw     	t3, 12(sp)
     mv      a4, t2
     
     jal     check
@@ -61,8 +61,7 @@ for_loop:
     lw     	t0, 0(sp)        
     lw     	t1, 4(sp)   
     lw     	t2, 8(sp)        
-    lw     	t3, 12(sp)
-    addi   	sp, sp, 16
+    addi   	sp, sp, 12
     
     beq     a3, x0, for_loop # if a3 == 0, check fail, back too loop
     
@@ -70,11 +69,10 @@ for_loop:
     sb      t2, 0(t0)        # board[location] = i
     addi    a1, a1, 1        # Move to next location
     # caller save t0 ~ t3
-    addi   	sp, sp, -16        
+    addi   	sp, sp, -12        
     sw     	t0, 0(sp)        
     sw     	t1, 4(sp)   
     sw     	t2, 8(sp)        
-    sw     	t3, 12(sp)
     
     jal     solve            # Recursive call
     
@@ -82,13 +80,9 @@ for_loop:
     lw     	t0, 0(sp)        
     lw     	t1, 4(sp)   
     lw     	t2, 8(sp)        
-    lw     	t3, 12(sp)
-    addi   	sp, sp, 16 
+    addi   	sp, sp, 12 
     
     bnez    a2, return       # if solve(board, location + 1) == 1, return
-    
-
-    addi   	sp, sp, 16 
     
     lw      a1, 4(sp)        # load a1 back
     sb      x0, 0(t0)        # board[location] = 0
