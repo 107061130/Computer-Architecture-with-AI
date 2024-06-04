@@ -1,4 +1,4 @@
-# AI-Computing-Architecture-and-System
+# Computer Architecture with AI
 
 ## 學習高效能晶片設計實作的入門課程設計
 
