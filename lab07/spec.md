@@ -1,8 +1,3 @@
----
-title: ACAL 2024 Curriculum Lab 7 - RISC-V Instruction Set Emulator
-robots: noindex, nofollow
----
-
 # <center>ACAL 2024 Curriculum Lab 7 <br /><font color="＃1560bd">RISC-V Instruction Set Emulator</font></center>
 
 ###### tags: `AIAS Spring 2024`
