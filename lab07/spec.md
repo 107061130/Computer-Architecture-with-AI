@@ -322,26 +322,6 @@ HW 7-2 進行支援 RV32 的 Bit Manipulation Extension 的指令擴增，相關
 ## Gitlab 共同開發Document
 - [gitlab 多人協同工作教學文件 - 以HW7-2 為例](https://course.playlab.tw/md/Qqyg9O2JQYauvm_nNOr8Mw)
 
-# Bonus 
-## Bonus #1 - Emulator 加速
-本次的 Bonus 要請同學試著加速我們在 Lab 7 中所使用到的 emulator。`emulator.cpp` 中有加入測試程式執行時間的部分，測試 emulator 優化程度的 `benchmark.txt` 也一同放在 `bonus` 資料夾中，同學請使用下方程式碼進行優化後程式碼的測試。TA 將 `Makefile` 改寫成會直接 compile & execute 的模式，執行完 benchmark 所花費的時間會直接 print 出來，同學可以用此數值作為優化程度的依據，最後寫進 HW report中。
-
-```shell
-## only need the make command 
-$  make 
-Your Emulator Duration Before Acceleration = : xxxxxxx s.
-
-Your Emulator Duration After Acceleration = : xxxxxxx s.
-```
-
-在 bonus 中 TA 將檔案分為 `emulator.cpp` 和 `emulator_accelerate.cpp`，同學可以在 `emulator_accelerate.cpp` 中進行更動，嘗試優化 emulator。提供的 benchmark 執行一次大約會需要 5 分鐘左右的時間。同學在自己測試時，為了方便可以自行更動 benchmark 中 loop 的次數，但最後 TA 仍然會以原始的 benchmark 參數評斷優化程度。
-
-## Bonus #2 - Another ISA Simulator Implementation 
-
-我們在這個 lab 使用的 rv32emulator 因為簡單、易於修改，拿來當同學寫 ISA simulator 的入門練習比較適合，但是這個 emulator 有不少缺點，其中最大的一個缺點是 input 是 assembly program，所以無法使用我們一般 compile 好的 elf file 來執行。為了期末project 方便, 下面的 simulator 可以接受 elf file，這個bonus 的目的是把 RISC-V bitwise extension 移植到這個功能比較強大的 ISA emulator 上，這個 bonus 將會幫助同學未來Labs的進行。
-
-- [RISC-V Instruction Set Simulator](https://github.com/ultraembedded/riscv/tree/master/isa_sim)
-
 # Homework and Bonus Submission Rule
 
 - **Step 1**
