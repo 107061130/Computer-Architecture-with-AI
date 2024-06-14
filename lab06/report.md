@@ -226,6 +226,7 @@ sudoku_2x2_asm:
     lw 	   	ra, 0(sp)         # recover return address
     addi  	sp, sp, 4         # let sp point to upper stack
     ret                       # return 
+ 
     
 # solve function in .c file
 solve:
@@ -234,7 +235,7 @@ solve:
     sw     	a1, 4(sp)         # store location
     
     # check loaction == 16
-    slti   	t0, a1, 16        # t0 = 1, if loacation < 16
+    slti   	t0, a1, 16        # to = 1, if loacation < 16
     beq     t0, x0, finish    # if location >= 16 then jump to branch finish
     
     # check board[loaction] == 0
@@ -249,15 +250,14 @@ solve:
 	# for (i = 1; i < 5; i++)
 for_loop:
 	addi    t2, t2, 1        # i = i + 1
-    beq     t2, t3, return   # if loop end, return
+    beq     t2, t1, return   # if loop end, return
     li      a3, 0
     
     # caller save t0 ~ t3
-    addi   	sp, sp, -16        
+    addi   	sp, sp, -12        
     sw     	t0, 0(sp)        
     sw     	t1, 4(sp)   
     sw     	t2, 8(sp)        
-    sw     	t3, 12(sp)
     mv      a4, t2
     
     jal     check
@@ -266,8 +266,7 @@ for_loop:
     lw     	t0, 0(sp)        
     lw     	t1, 4(sp)   
     lw     	t2, 8(sp)        
-    lw     	t3, 12(sp)
-    addi   	sp, sp, 16
+    addi   	sp, sp, 12
     
     beq     a3, x0, for_loop # if a3 == 0, check fail, back too loop
     
@@ -275,11 +274,10 @@ for_loop:
     sb      t2, 0(t0)        # board[location] = i
     addi    a1, a1, 1        # Move to next location
     # caller save t0 ~ t3
-    addi   	sp, sp, -16        
+    addi   	sp, sp, -12        
     sw     	t0, 0(sp)        
     sw     	t1, 4(sp)   
     sw     	t2, 8(sp)        
-    sw     	t3, 12(sp)
     
     jal     solve            # Recursive call
     
@@ -287,13 +285,9 @@ for_loop:
     lw     	t0, 0(sp)        
     lw     	t1, 4(sp)   
     lw     	t2, 8(sp)        
-    lw     	t3, 12(sp)
-    addi   	sp, sp, 16 
+    addi   	sp, sp, 12 
     
     bnez    a2, return       # if solve(board, location + 1) == 1, return
-    
-
-    addi   	sp, sp, 16 
     
     lw      a1, 4(sp)        # load a1 back
     sb      x0, 0(t0)        # board[location] = 0
@@ -333,7 +327,7 @@ for1:
     addi   t0, t0, 1
     j      for1
     
-check_col:
+ check_col:
     # check col
     li     t0, 0
     li     t1, 16
@@ -349,7 +343,7 @@ for2:
     addi   t0, t0, 4
     j      for2
     
-check_block:    
+ check_block:    
     # check block
     # row = location / 4
     # row = row - row % 2
@@ -384,7 +378,7 @@ check_block:
     li     a3, 1
     
 return_false:
-    ret
+	ret
 
     .size sudoku_2x2_asm, .-sudoku_2x2_asm
 ```
